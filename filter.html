@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+.filterDiv {
+  float: left;
+  background-color: #2196F3;
+  color: #ffffff;
+  width: 100px;
+  line-height: 100px;
+  text-align: center;
+  margin: 2px;
+  display: none;
+  height: 50px;
+}
+
+.show {
+  display: block;
+}
+
+.container {
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+/* Style the buttons */
+.btn {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+.btn.active {
+  background-color: #666;
+  color: white;
+}
+</style>
+  </head>
+  <body>
+
+    <div id="myBtnContainer">
+  <button class="btn" onclick="filterSelection('0-9')"> 0-9</button>
+  <button class="btn" onclick="filterSelection('A')"> A</button>
+  <button class="btn" onclick="filterSelection('B')"> B</button>
+  <button class="btn" onclick="filterSelection('C')"> C</button>
+  <button class="btn" onclick="filterSelection('A')"> D</button>
+  <button class="btn" onclick="filterSelection('B')"> E</button>
+  <button class="btn" onclick="filterSelection('C')"> F</button>
+  <button class="btn" onclick="filterSelection('')"> G</button>
+  <button class="btn" onclick="filterSelection('H')"> H</button>
+  <button class="btn" onclick="filterSelection('I')"> I</button>
+  <button class="btn" onclick="filterSelection('J')"> J</button>
+  <button class="btn" onclick="filterSelection('K')"> K</button>
+  <button class="btn" onclick="filterSelection('L')"> L</button>
+  <button class="btn" onclick="filterSelection('M')"> M</button>
+  <button class="btn" onclick="filterSelection('N')"> N</button>
+  <button class="btn" onclick="filterSelection('O')"> O</button>
+</div>
+
+<div class="container">
+  <div class="filterDiv 0-9"> jj</div>
+  <div class="filterDiv A Action"></div>
+  <div class="filterDiv B"></div>
+  <div class="filterDiv C"></div>
+  <div class="filterDiv D "></div>
+  <div class="filterDiv F"></div>
+  <div class="filterDiv G"></div>
+  <div class="filterDiv H"></div>
+  <div class="filterDiv I"></div>
+  <div class="filterDiv J "></div>
+  <div class="filterDiv K"></div>
+  <div class="filterDiv L"></div>
+  <div class="filterDiv M"></div>
+</div>
+
+  </body>
+  <script>
+filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("filterDiv");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>
+
+</html>
